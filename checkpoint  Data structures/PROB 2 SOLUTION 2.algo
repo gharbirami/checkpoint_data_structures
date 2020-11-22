@@ -1,0 +1,41 @@
+ALGORITHM prob2_sol2 //Solution Hash_Table
+VAR
+    htab1 : HASH_TABLE<INTEGER,INTEGER>;
+    htab2 : HASH_TABLE<INTEGER,INTEGER>;
+    sum , count, i , j : INTEGER;
+    x : BOOLEAN;
+BEGIN
+//Insertion des keys_values du premier tableau
+    htab1 : HASH_TABLE<INTEGER,INTEGER>;
+        htab1.insert(0,12);
+        htab1.insert(1,13);
+        htab1.insert(2,6);
+        htab1.insert(3,10);
+        Write(htab1);
+//Insertion des keys_values du deuxième tableau
+    htab2 : HASH_TABLE<INTEGER,INTEGER>;
+        htab2.insert(0,13);
+        htab2.insert(1,10);
+        htab2.insert(2,16);
+        htab2.insert(3,15);
+        Write(htab2);
+//Initialisation de count et la valeur sum
+    count := 1;
+    sum := 0;
+//Comparaison des valeurs des deux tableau et affecter juste la valeur  commun du tableau est multiplier par 2
+    FOR i FROM 0 TO htab1.length-1 STEP 1  DO
+    x := TRUE;
+FOR j FROM 0 TO htab2.length-1 STEP 1  DO
+    IF (htab1.get[i]<>htab2.get[j]) THEN
+    x := FALSE;
+    END_IF
+END_FOR
+    IF (x == TRUE) THEN
+    count++;
+    sum +:= htab1.get[i]*2 ;
+    END_IF
+END_FOR
+
+//Affichage de la somme des valeurs commun
+    Write("La somme des valeurs commun est:", sum)
+END

@@ -1,0 +1,54 @@
+ALGORITHM prob1_sol2 //Solution Hash_Table
+VAR
+    htab1 : HASH_TABLE<INTEGER,INTEGER>;
+    htab2 : HASH_TABLE<INTEGER,INTEGER>;
+    sum , count, i , j : INTEGER;
+    x : BOOLEAN;
+BEGIN
+//Insertion des keys_values du premier tableau
+    htab1 : HASH_TABLE<INTEGER,INTEGER>;
+        htab1.insert(0,3);
+        htab1.insert(1,1);
+        htab1.insert(2,7);
+        htab1.insert(3,9);
+        Write(htab1);
+//Insertion des keys_values du deuxième tableau
+    htab2 : HASH_TABLE<INTEGER,INTEGER>;
+        htab2.insert(0,2);
+        htab2.insert(1,4);
+        htab2.insert(2,1);
+        htab2.insert(3,9);
+        htab2.insert(4,3);
+        Write(htab2);
+//Initialisation de count et la valeur sum
+    count := 1;
+    sum := 0;
+//Comparaison des valeurs des deux tableau et affecter juste la valeur distincte du tableau 1
+    FOR i FROM 0 TO htab1.length-1 STEP 1  DO
+    x := TRUE;
+FOR j FROM 0 TO htab2.length-1 STEP 1  DO
+    IF (htab1.get[i]==htab2.get[j]) THEN
+    x := FALSE;
+    END_IF
+END_FOR
+    IF (x == TRUE) THEN;
+    count++;
+    sum +:= htab1.get[i]
+    END_IF
+END_FOR
+//Comparaison des valeurs des deux tableau et affecter juste la valeur distincte du tableau 2
+FOR i FROM 0 TO htab2.length STEP 1  DO
+    x := TRUE;
+FOR j FROM 0 TO htab1.length STEP 1  DO
+    if (htab2.get[i]==htab1.get[j]) THEN
+    x := FALSE;
+    END_IF
+END_FOR
+    IF (x == TRUE) THEN
+    count++;
+    sum +:= htab2.get[i]
+    END_IF
+END_FOR
+//Affichage de la somme des valeurs distinctes
+    Write("La somme des valeurs distinctes est:", sum)
+END
